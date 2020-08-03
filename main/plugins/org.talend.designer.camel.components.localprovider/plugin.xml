@@ -245,7 +245,7 @@
         <libraryNeeded context="plugin:org.talend.designer.camel.components.localprovider"
             name="${tesb-groovy-json}"
             id="groovy-json"
-            uripath="platform:/plugin/org.talend.libraries.camel.alldeps/lib/${tesb-groovy-all}"
+            uripath="platform:/plugin/org.talend.libraries.camel.alldeps/lib/${tesb-groovy-json}"
             bundleID="" />
 
         <libraryNeededGroup
