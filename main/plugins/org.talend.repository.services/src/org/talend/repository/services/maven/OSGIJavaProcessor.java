@@ -59,8 +59,14 @@ public class OSGIJavaProcessor extends MavenJavaProcessor {
                 processItem.getProperty().getDisplayName(), PomIdsHelper.getJobVersion(processItem.getProperty()));
         featuresModel.setConfigName(this.context.getName());
         featuresModel.setContexts(JobContextUtils.getContextsMap(processItem));
+        
+        String artifactId = processItem.getProperty().getDisplayName();
+        if ("OSGI".equals(property.getAdditionalProperties().get(TalendProcessArgumentConstant.ARG_BUILD_TYPE))) {
+            artifactId = artifactId + "-bundle";
+        }
+        
         BundleModel bundleModel = new BundleModel(PomIdsHelper.getJobGroupId(processItem.getProperty()),
-                processItem.getProperty().getDisplayName(), PomIdsHelper.getJobVersion(processItem.getProperty()));
+                artifactId, PomIdsHelper.getJobVersion(processItem.getProperty()));
         featuresModel.addBundle(bundleModel);
         IFile feature = getTalendJavaProject().createSubFolder(monitor, getTalendJavaProject().getResourcesFolder(), "feature")
                 .getFile("feature.xml");
