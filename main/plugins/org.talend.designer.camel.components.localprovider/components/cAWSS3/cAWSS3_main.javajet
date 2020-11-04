@@ -107,7 +107,7 @@ imports="
     List<Map<String, String>> messageHeaders = (List<Map<String, String>>) ElementParameterParser.getObjectValue(node, "__MESSAGE_HEADERS__");
 
     String uri = builder.build();
-   
+
     List< ? extends IConnection> conns = node.getIncomingConnections();
 
     if (conns.size() > 0 && messageHeaders.size() > 0) {
@@ -116,12 +116,21 @@ imports="
             String header = map.get("MESSAGE_HEADER");
             String value = map.get("MESSAGE_HEADER_VALUE");
 
+			sb1.append(".doTry()");
+            sb1.append(".setHeader(\"");
+            sb1.append(header);
+            sb1.append("\",");
+            sb1.append("simple(");
+            sb1.append(value);
+            sb1.append("))");
+
+            sb1.append(".doCatch(org.apache.camel.language.simple.types.SimpleParserException.class)");
             sb1.append(".setHeader(\"");
             sb1.append(header);
             sb1.append("\",");
             sb1.append("constant(");
             sb1.append(value);
-            sb1.append("))");
+            sb1.append(")).end()");
         }
 
         if (("true".equals(useMessageHeadersUserDefined)) && (userDefinedHeaders.size()>0)) {
