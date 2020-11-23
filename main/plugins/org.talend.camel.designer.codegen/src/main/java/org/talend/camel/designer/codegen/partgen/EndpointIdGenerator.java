@@ -13,7 +13,7 @@
 package org.talend.camel.designer.codegen.partgen;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.text.StringEscapeUtils;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.talend.camel.designer.codegen.util.NodeUtil;
 import org.talend.core.model.process.INode;
 import org.talend.designer.codegen.exception.CodeGeneratorException;
